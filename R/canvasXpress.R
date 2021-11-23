@@ -181,7 +181,6 @@ canvasXpress <- function(data = NULL,
         }
     }
     else if (graphType == "Genome") {
-        browser()
         cx_object <- list(data        = data,
                           config      = config,
                           events      = events,
@@ -355,11 +354,11 @@ canvasXpress <- function(data = NULL,
     attr(cx_object, 'TOJSON_ARGS') <- list(dataframe = dataframe,
                                            pretty    = pretty,
                                            digits    = digits)
-
+saveRDS(cx_object, "cx_object.RDS")
     htmlwidgets::createWidget(name = "canvasXpress",
-                              cx_object,
-                              width  = width,
-                              height = height,
+                              x       = cx_object,
+                              width   = width,
+                              height  = height,
                               package = "canvasXpress")
 }
 
@@ -416,7 +415,7 @@ canvasXpress.json <- function(json,
             length(json) < 1)) {
         stop("json must be supplied and be a character or json object")
     }
-
+    saveRDS(json, "cx_json.RDS")
     htmlwidgets::createWidget(name    = "canvasXpress",
                               x       = jsonlite::minify(json),
                               width   = width,

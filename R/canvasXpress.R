@@ -181,6 +181,7 @@ canvasXpress <- function(data = NULL,
         }
     }
     else if (graphType == "Genome") {
+        browser()
         cx_object <- list(data        = data,
                           config      = config,
                           events      = events,

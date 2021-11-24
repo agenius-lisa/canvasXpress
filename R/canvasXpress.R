@@ -71,9 +71,12 @@ canvasXpress <- function(data = NULL,
 
 	# Implement data in URL
 	if (is.character(data) && (graphType != "Network")) {
-		if (httr::http_error(data)) {
-		    message("Unable to validate URL")
-		}
+	    try({
+	        if (httr::http_error(data)) {
+	            message("Unable to validate URL")
+	        }
+	    }, silent = T)
+
 		# CanvasXpress Object
 		cx_object <- list(data        = data,
 				          config      = config,
@@ -179,12 +182,6 @@ canvasXpress <- function(data = NULL,
                               events      = events,
                               afterRender = afterRender)
         }
-    }
-    else if (graphType == "Genome") {
-        cx_object <- list(data        = data,
-                          config      = config,
-                          events      = events,
-                          afterRender = afterRender)
     }
     else if (graphType == "Boxplot" &&
              ((length(intersect(names(data), precalc.box[1:5])) == 5) ||

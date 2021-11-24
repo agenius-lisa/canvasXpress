@@ -68,7 +68,7 @@ canvasXpress <- function(data = NULL,
     dataframe     <- "columns"
     precalc.box   <- c("iqr1", "qtl1", "median", "qtl3", "iqr3", "outliers")
     precalc.bar   <- c("mean", "stdev")
-
+browser()
 	# Implement data in URL
 	if (is.character(data) && (graphType != "Network")) {
 	    try({
